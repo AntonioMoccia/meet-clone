@@ -1,18 +1,11 @@
-import React, { useEffect } from "react";
-import SocketIO from "socket.io-client";
-import { useRoomContext } from "./context/RoomContext";
-
+import {} from 'react-router-dom'
+import './App.css'
 
 function App() {
-  const { ws } = useRoomContext();
 
-  useEffect(()=>{
-    ws.emit("room:create")
-    ws.on("room:created",({roomId}:{roomId:string})=>{
-      console.log(roomId)
-    })
-  },[])
-  return <div>Hello world</div>;
+  return (
+    <></>
+  )
 }
 
-export default App;
+export default App

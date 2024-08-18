@@ -1,10 +1,9 @@
-import express, { Application, Request, Response } from 'express'
+import express, { Application } from 'express'
 import { createServer } from 'http'
-import { Server } from 'socket.io'
+import { Server} from 'socket.io'
 import cors from 'cors'
-import { v4 as uuidV4 } from 'uuid'
-import { Socket } from 'dgram'
-import { DefaultEventsMap } from 'socket.io/dist/typed-events'
+import roomHandler from '@services/room-handler'
+
 
 const app: Application = express()
 const httpsServer = createServer(app)
@@ -18,18 +17,9 @@ const io = new Server(httpsServer, {
     }
 })
 
-const roomHandler = (socket:any)=>{
-    socket.on("room:create", () => {
-        const roomId = uuidV4()
-        socket.emit("room:created", {
-            roomId
-        })
-
-    })
-}
 
 io.on('connection', (socket) => {
-    console.log('socket')
+    console.log('user connected')
     roomHandler(socket)
 
     socket.on('disconnect', () => {
@@ -37,9 +27,6 @@ io.on('connection', (socket) => {
     })
 })
 
-/* app.get('/', (req: Request, res: Response) => {
-    res.send('hello world')
-}) */
 
 httpsServer.listen(5000, () => {
     console.log(`http://localhost:5000`);
