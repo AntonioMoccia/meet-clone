@@ -48,6 +48,9 @@ const roomHandler = (socket: Socket) => {
 
   socket.on("room:create", createRoom);
   socket.on("room:join",joinRoom);
+  socket.on('stream',({stream,roomId})=>{
+    socket.to(roomId).emit('streaming',{stream})
+  })
 };
 
 export default roomHandler;

@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.4",
+    "peer": "^1.0.2"
+  },
+  "name": "peer-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

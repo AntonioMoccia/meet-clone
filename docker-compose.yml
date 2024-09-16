@@ -1,0 +1,10 @@
+version: '2'
+services:
+  peer-server:
+    build:
+      context: ./peer-server
+    container_name: peer-server
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
